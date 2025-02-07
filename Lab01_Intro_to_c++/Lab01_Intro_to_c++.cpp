@@ -1,4 +1,7 @@
 #include <iostream>
+#include <build_HomePC/Car.hpp>
+#include <build_HomePC/Student.hpp>
+
 float pi = 3.1415927f;
 
 float power(const float x, const int y)
@@ -14,40 +17,6 @@ float power(const float x, const int y)
 void radians(float &angle)
 {
     angle * pi / 180.0f;
-}
-
-class Car {
-public:
-    std::string make;
-    std::string model;
-    int year;
-    float speed = 0.0f;
-
-    // Methods
-    void outputDetails();
-    void accelerate(const float);
-
-    // Constructor
-    Car::Car(const std::string makeInput, const std::string modelInput, const int yearInput)
-    {
-        make = makeInput;
-        model = modelInput;
-        year = yearInput;
-        std::cout << "\nCar object created" << std::endl;
-    }
-};
-
-void Car::outputDetails()
-{
-    std::cout << "\nMake: " << make
-        << "\nModel: " << model
-        << "\nYear: " << year << std::endl;
-}
-
-void Car::accelerate(const float increment)
-{
-    speed = +increment;
-    std::cout << "\nThe car has accelerated to " << speed << " mph." << std::endl;
 }
 
 int main()
@@ -149,6 +118,16 @@ int main()
 
     // Accelerate the Delorean up to 88 mph
     delorean.accelerate(88.0f);
+
+    // Convert speed from mph to kph
+
+    std::cout << "\n" << 88 << " mph is equibalent to " << Car::mph2kph(88.0f) << " kph.\n";
+
+    std::cout << "\n-------\nExercises\n-------" << std::endl;
+
+    Student ellie("Ellie", "Williams", 12345678, "Computer Science", 5);
+
+    ellie.print();
 
     return 0;
 }
