@@ -129,12 +129,18 @@ int main()
 
     unsigned int level4Marks[] = {55, 60, 72, 64};
     unsigned int level5Marks[] = {68, 62, 74, 70};
+    
     ellie.addLevelMarks(4, level4Marks);
     ellie.addLevelMarks(5, level5Marks);
     
     ellie.print();
 
     std::cout << "\nLevel average: " << ellie.levelAverage(5, ellie.marks) << std::endl;
+    
+    ellie.level = 6;
+    unsigned int level6Marks[] = { 72, 68, 76, 65 };
+    ellie.addLevelMarks(6, level6Marks);
+    ellie.classification();
 
     return 0;
 }
