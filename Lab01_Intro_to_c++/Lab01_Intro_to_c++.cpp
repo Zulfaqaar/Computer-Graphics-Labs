@@ -127,7 +127,14 @@ int main()
 
     Student ellie("Ellie", "Williams", 12345678, "Computer Science", 5);
 
+    unsigned int level4Marks[] = {55, 60, 72, 64};
+    unsigned int level5Marks[] = {68, 62, 74, 70};
+    ellie.addLevelMarks(4, level4Marks);
+    ellie.addLevelMarks(5, level5Marks);
+    
     ellie.print();
+
+    std::cout << "\nLevel average: " << ellie.levelAverage(5, ellie.marks) << std::endl;
 
     return 0;
 }
