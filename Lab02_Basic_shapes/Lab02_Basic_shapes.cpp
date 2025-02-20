@@ -54,12 +54,30 @@ int main( void )
     
 // Define vertices
     static const float vertices[] = {
-        -0.9f, -0.5f, 0.0f,   // triangle 1
-        -0.1f, -0.5f, 0.0f,
-        -0.5f,  0.5f, 0.0f,
-         0.1f, -0.5f, 0.0f,   // triangle 2
-         0.9f, -0.5f, 0.0f,
-         0.5f,  0.5f, 0.0f
+         0.0f,  0.0f, 0.0f,   // triangle 1
+        -0.25f, 0.75f,0.0f,
+         0.25f, 0.75f,0.0f,
+         0.0f,  0.0f, 0.0f,   // triangle 2
+        -0.25f, 0.75f,0.0f,
+        -0.75f, 0.25f,0.0,
+         0.0f,  0.0f, 0.0f,   // triangle 3
+        -0.75f, 0.25f,0.0f,
+        -0.75f,-0.25f,0.0f,
+         0.0f,  0.0f, 0.0f,   // triangle 4
+        -0.75f,-0.25f,0.0f,
+        -0.25f,-0.75f,0.0f,
+         0.0f,  0.0f, 0.0f,   // triangle 5
+        -0.25f,-0.75f,0.0f,
+         0.25f,-0.75f,0.0f,
+         0.0f,  0.0f, 0.0f,   // triangle 6
+         0.25f,-0.75f,0.0f,
+         0.75f,-0.25f,0.0f,
+         0.0f,  0.0f, 0.0f,   // triangle 7
+         0.75f,-0.25f,0.0f,
+         0.75f, 0.25f,0.0f,
+         0.0f,  0.0f, 0.0f,   // triangle 8
+         0.75f, 0.25f,0.0f,
+         0.25f, 0.75f,0.0f,
     };
 
     // Define vertex colours
@@ -67,9 +85,27 @@ int main( void )
         1.0f, 0.0f, 0.0f,    // triangle 1 (red)
         1.0f, 0.0f, 0.0f,
         1.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 1.0f,    // triangle 2 (blue)
-        0.0f, 0.0f, 1.0f,
-        0.0f, 0.0f, 1.0f,
+        0.9f, 0.9f, 0.9f,    // triangle 2 (grey)
+        0.9f, 0.9f, 0.9f,
+        0.9f, 0.9f, 0.9f,
+        1.0f, 0.0f, 0.0f,    // triangle 3 (red)
+        1.0f, 0.0f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+        0.9f, 0.9f, 0.9f,    // triangle 4 (grey)
+        0.9f, 0.9f, 0.9f,
+        0.9f, 0.9f, 0.9f,
+        1.0f, 0.0f, 0.0f,    // triangle 5 (red)
+        1.0f, 0.0f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+        0.9f, 0.9f, 0.9f,    // triangle 6 (grey)
+        0.9f, 0.9f, 0.9f,
+        0.9f, 0.9f, 0.9f,
+        1.0f, 0.0f, 0.0f,    // triangle 7 (red)
+        1.0f, 0.0f, 0.0f,
+        1.0f, 0.0f, 0.0f,
+        0.9f, 0.9f, 0.9f,    // triangle 8 (grey)
+        0.9f, 0.9f, 0.9f,
+        0.9f, 0.9f, 0.9f,
     };
 
     // Create the Vertex Array Object (VAO)
