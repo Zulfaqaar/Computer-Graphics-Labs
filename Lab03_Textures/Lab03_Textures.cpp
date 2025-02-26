@@ -121,11 +121,12 @@ int main( void )
     
     // Use the shader program
     glUseProgram(shaderID);
-
+    /*
     // Create and bind texture
     unsigned int texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
+
 
     // Load texture image from file
     //const char* path = "../assets/crate.jpg";
@@ -134,6 +135,7 @@ int main( void )
     int width, height, nChannels;
     stbi_set_flip_vertically_on_load(true);
     unsigned char* data = stbi_load(path, &width, &height, &nChannels, 0);
+    
 
     // Specify 2D texture
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -146,26 +148,33 @@ int main( void )
     // Free the image from the memory
     stbi_image_free(data);
 
-    // Create texture buffer
-    unsigned int uvBuffer;
-    glGenBuffers(1, &uvBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(uv), uv, GL_STATIC_DRAW);
 
-    // Create Element Buffer Object (EBO)
-    unsigned int EBO;
-    glGenBuffers(1, &EBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     if (data)
         std::cout << "Texture loaded." << std::endl;
     else
         std::cout << "Texture not loaded. Check the path." << std::endl;
     
+    */
+
+    // Create texture buffer
+    unsigned int uvBuffer;
+    glGenBuffers(1, &uvBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(uv), uv, GL_STATIC_DRAW);
+
+    // Load the textures
+    unsigned int texture = loadTexture("../assets/crate.jpg");
+
     // Bind the texture to the VAO
     glBindTexture(GL_TEXTURE_2D, texture);
     glBindVertexArray(VAO);
+
+    // Create Element Buffer Object (EBO)
+    unsigned int EBO;
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // Render loop
 	while (!glfwWindowShouldClose(window))
