@@ -7,9 +7,11 @@ in vec2 UV;
 out vec3 colour;
 
 // Uniforms
-uniform sampler2D textureMap;
+uniform sampler2D texture1;
+uniform sampler2D texture2;
 
 void main()
 {
-    colour = vec3(texture(textureMap, UV));
+    colour = vec3(mix(texture(texture1, UV), texture(texture2, UV), 1));
+    //colour = vec3(texture(texture2, UV).y,texture(texture2, UV).x,texture(texture2, UV).z);
 }

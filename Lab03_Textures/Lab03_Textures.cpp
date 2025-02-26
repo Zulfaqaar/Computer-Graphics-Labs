@@ -92,11 +92,12 @@ int main( void )
     // Define texture coordinates
     static const float uv[] = {
         // u    v      index
-        0.0f,  0.0f,  // 0
-        1.0f,  0.0f,  // 1
-        1.0f,  1.0f,  // 2
-        0.0f,  1.0f,  // 3
+        0.4f,  0.4f,  // 0
+        0.6f,  0.4f,  // 1
+        0.6f,  0.6f,  // 2
+        0.4f,  0.6f,  // 3
     };
+    
 
     // Define indices
     static const unsigned int indices[] = {
@@ -156,25 +157,33 @@ int main( void )
         std::cout << "Texture not loaded. Check the path." << std::endl;
     
     */
-
     // Create texture buffer
+
     unsigned int uvBuffer;
     glGenBuffers(1, &uvBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(uv), uv, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(uv), uv , GL_STATIC_DRAW);
 
     // Load the textures
-    unsigned int texture = loadTexture("../assets/crate.jpg");
+    unsigned int texture1 = loadTexture("../assets/crate.jpg");
+    unsigned int texture2 = loadTexture("../assets/mario.png");
 
+    /*
     // Bind the texture to the VAO
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, texture1);
     glBindVertexArray(VAO);
+    */
 
     // Create Element Buffer Object (EBO)
     unsigned int EBO;
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    // Send the texture uniforms to the fragment shader
+    glUseProgram(shaderID);
+    glUniform1i(glGetUniformLocation(shaderID, "texture1"), 0);
+    glUniform1i(glGetUniformLocation(shaderID, "texture2"), 1);
 
     // Render loop
 	while (!glfwWindowShouldClose(window))
@@ -211,6 +220,12 @@ int main( void )
 		// Swap buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+
+        // Bind the textures
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture1);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture2);
 	}
     
     // Cleanup
