@@ -13,6 +13,9 @@ unsigned int loadTexture(const char *path)
     stbi_set_flip_vertically_on_load(true);
     unsigned char *data = stbi_load(path, &width, &height, &nChannels, 0);
     
+
+
+
     if (data)
     {
         // Deal with different number of colour channels
