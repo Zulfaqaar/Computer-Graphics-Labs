@@ -92,10 +92,10 @@ int main( void )
     // Define texture coordinates
     static const float uv[] = {
         // u    v      index
-        0.4f,  0.4f,  // 0
-        0.6f,  0.4f,  // 1
-        0.6f,  0.6f,  // 2
-        0.4f,  0.6f,  // 3
+        0.4f,  0.35f,  // 0
+        0.55f,  0.35f,  // 1
+        0.55f,  0.56f,  // 2
+        0.4f,  0.56f,  // 3
     };
     
 
