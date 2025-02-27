@@ -84,8 +84,53 @@ int main() {
     std::cout << "invB * B = " << glm::transpose(B * invB) << "\n" << std::endl;
     
 
+    // Defining vectors
+    glm::vec3 p, q, r;
+    p = glm::vec3(5.0f, 6.0f, 1.0f);
+    q[0] = -10.0f, q[1] = -2.0f, q[2] = -7.0f;
+    r = glm::vec3(5, -4, 6);
+    printf("Computer Graphics Lab Exercise 2\n---------------------------------\n\nDefining vectors:\n");
+    std::cout << "p = " << p << std::endl;
+    std::cout << "q = " << q << std::endl;
+    std::cout << "r = " << r << std::endl;
 
+    // Vector length
+    printf("\nVector length:\n");
+    printf("length(p) = %0.3f\n", glm::length(p));
 
+    // Normalising vectors
+    glm::vec3 qHat;
+    qHat = glm::normalize(q);
+    printf("length(qHat) = %0.3f\n", glm::length(qHat));
+
+    // Dot and Cross products
+    printf("\nDot and cross products:\n");
+    printf("p . q = %0.3f\n", glm::dot(p, q));
+    std::cout << "q x r = " << glm::cross(q, r) << std::endl;
+
+    // Defining matrices
+    glm::mat2 A2, B2, C;
+
+    A2 = glm::mat2(-1.0f, 3.0f, 2.0f, -5.0f);
+    B2 = glm::mat2(0.0f, 2.0f, 7.0f, 1.0f);
+    C = glm::mat2(3.0f, 2.0f, -3.0f, -4.0f);
+
+    printf("\nDefining matrices:\n");
+    std::cout << "A = " << glm::transpose(A2) << "\n" << std::endl;
+    std::cout << "B = " << glm::transpose(B2) << "\n" << std::endl;
+    std::cout << "C = " << glm::transpose(C) << std::endl;
+
+    // Arithmetic operations on matrices
+    printf("\nArithmetic operations on matrices:\n");
+    std::cout << "A * B = " << glm::transpose(B2 * A2) << "\n" << std::endl;
+    std::cout << "A * B * C = " << glm::transpose(C * B2 * A2) << "\n" << std::endl;
+    std::cout << "C * B * A = " << glm::transpose(A2 * B2 * C) << "\n" << std::endl;
+    std::cout << "At * B = " << A2* glm::transpose(B2) << "\n" << std::endl;
+
+    // Inverse matrices
+    printf("\nInverse matrices:\n");
+    glm::mat2 invA2 = glm::inverse(A2);
+    std::cout << "InvA = " << glm::transpose(invA2) << "\n" << std::endl;
 
     return 0;
 }
