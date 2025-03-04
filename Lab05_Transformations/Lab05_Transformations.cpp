@@ -9,6 +9,7 @@
 // Function prototypes
 void keyboardInput(GLFWwindow *window);
 
+
 int main( void )
 {
     // =========================================================================
@@ -117,7 +118,8 @@ int main( void )
     unsigned int textureID;
     textureID = glGetUniformLocation(shaderID, "texture");
     glUniform1i(textureID, 0);
-    
+
+
     // Render loop
     while (!glfwWindowShouldClose(window))
     {
@@ -158,13 +160,18 @@ int main( void )
 
         float angle = Maths::radians(45.0f);
         glm::mat4 rotate = Maths::rotate(angle, glm::vec3(0.0f, 0.0f, 1.0f));
+
+            glm::vec3 p, v;
+    p = glm::vec3(1.0f, 3.0f, -5.0f);
+    v = glm::vec3(0.01f, 0.005f, 0);
+
         */
 
         // Animate rectangle
-        float angle = Maths::radians(glfwGetTime() * 360.0f / 2.5f);
-        glm::mat4 translate = Maths::translate(glm::vec3(0.4f, 0.3f, 0.0f));
-        glm::mat4 scale = Maths::scale(glm::vec3(0.25f, 0.25f, 0.0f));
-        glm::mat4 rotate = Maths::rotate(angle, glm::vec3(0.0f, 0.0f, -1.0f));
+        float angle = Maths::radians(glfwGetTime() * 360.0f / 5.0f);
+        glm::mat4 translate = Maths::translate(glm::vec3(0.2f, 0.2f, 0.0f));
+        glm::mat4 scale = Maths::scale(glm::vec3(0.2f, 0.2f, 0.0f));
+        glm::mat4 rotate = Maths::rotate(angle, glm::vec3(0.0f, 0.0f, 0.5f));
 
         // Send the transformation matrix to the shader
         glm::mat4 transformation = rotate * translate * scale;
