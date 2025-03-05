@@ -169,12 +169,12 @@ int main( void )
 
         // Animate rectangle
         float angle = Maths::radians(glfwGetTime() * 360.0f / 5.0f);
-        glm::mat4 translate = Maths::translate(glm::vec3(0.2f, 0.2f, 0.0f));
+        glm::mat4 translate = Maths::translate(glm::vec3(0.5f, 0.5f, 0.5f));
         glm::mat4 scale = Maths::scale(glm::vec3(0.2f, 0.2f, 0.0f));
-        glm::mat4 rotate = Maths::rotate(angle, glm::vec3(0.0f, 0.0f, 0.5f));
-
-        // Send the transformation matrix to the shader
+        glm::mat4 rotate = Maths::rotate(angle, glm::vec3(0.0f, 0.0f, 0.1f));
         glm::mat4 transformation = rotate * translate * scale;
+        // Send the transformation matrix to the shader
+
         unsigned int transformationID;
         transformationID = glGetUniformLocation(shaderID, "transformation");
         glUniformMatrix4fv(transformationID, 1, GL_FALSE, &transformation[0][0]);
