@@ -111,6 +111,8 @@ int main( void )
     // Define teapot object lighting properties
     teapot.ka = 0.2f;
     teapot.kd = 0.7f;
+    teapot.ks = 1.0f;
+    teapot.Ns = 20.0f;
 
     // Define light source properties
     glm::vec3 lightPosition = glm::vec3(2.0f, 2.0f, 2.0f);
@@ -137,6 +139,8 @@ int main( void )
 
         // Send light source properties to the shader
         glUniform1f(glGetUniformLocation(shaderID, "ka"), teapot.ka);
+        glUniform1f(glGetUniformLocation(shaderID, "ks"), teapot.ks);
+        glUniform1f(glGetUniformLocation(shaderID, "Ns"), teapot.Ns);
 
         // Calculate view and projection matrices
         camera.target = camera.eye + camera.front;
