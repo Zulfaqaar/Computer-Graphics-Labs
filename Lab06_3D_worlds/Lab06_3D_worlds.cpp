@@ -13,7 +13,7 @@
 void keyboardInput(GLFWwindow *window);
 
 // Create camera object
-Camera camera(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -2.0f));
+Camera camera(glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 2.0f));
 
 // Object struct
 struct Object
@@ -217,16 +217,18 @@ int main( void )
     
     // Cube positions
     glm::vec3 positions[] = {
-        glm::vec3(0.0f,  0.0f,  0.0f),
-        glm::vec3(2.0f,  5.0f, -10.0f),
-        glm::vec3(-3.0f, -2.0f, -3.0f),
-        glm::vec3(-4.0f, -2.0f, -8.0f),
-        glm::vec3(2.0f,  2.0f, -6.0f),
-        glm::vec3(-4.0f,  3.0f, -8.0f),
-        glm::vec3(0.0f, -2.0f, -5.0f),
-        glm::vec3(4.0f,  2.0f, -4.0f),
-        glm::vec3(2.0f,  0.0f, -2.0f),
-        glm::vec3(-1.0f,  1.0f, -2.0f)
+        //right side
+        glm::vec3(0.75f,  0.0f,  0.0f),
+        glm::vec3(2.25f,  0.0f,  0.0f),
+        glm::vec3(3.75f,  0.0f,  0.0f),
+        glm::vec3(5.25f,  0.0f,  0.0f),
+        glm::vec3(6.75f,  0.0f,  0.0f),
+        //left side
+        glm::vec3(-0.75f,  0.0f,  0.0f),
+        glm::vec3(-2.25f,  0.0f,  0.0f),
+        glm::vec3(-3.75f,  0.0f,  0.0f),
+        glm::vec3(-5.25f,  0.0f,  0.0f),
+        glm::vec3(-6.75f,  0.0f,  0.0f),
     };
 
     // Add cubes to objects vector
@@ -236,9 +238,9 @@ int main( void )
     for (unsigned int i = 0; i < 10; i++)
     {
         object.position = positions[i];
-        object.rotation = glm::vec3(1.0f, 1.0f, 1.0f);
+        object.rotation = glm::vec3(2.0f, 1.0f, 0.0f);
         object.scale = glm::vec3(0.5f, 0.5f, 0.5f);
-        object.angle = Maths::radians(20.0f * i);
+        //object.angle = Maths::radians(20.0f * i);
         objects.push_back(object);
     }
 
@@ -271,7 +273,7 @@ int main( void )
 
         // Calculate the view matrix
         glm::mat4 view = glm::lookAt(glm::vec3(1.0f, 1.0f, 1.0f),  // eye
-            glm::vec3(0.0f, 0.0f, -2.0f), // target
+            glm::vec3(0.0f, 0.0f, 0.0f), // target
             glm::vec3(0.0f, 1.0f, 0.0f)); // worldUp
 
         // Calculate orthographic projection matrix
@@ -281,8 +283,9 @@ int main( void )
         //glm::mat4 projection = glm::perspective(Maths::radians(30.0f), 1024.0f / 768.0f, 0.2f, 10.0f);
 
 // Calculate view and projection matrices
-        camera.eye = glm::vec3(0.0f, 0.0f, 5.0f);
-        camera.target = objects[0].position;
+        camera.eye = glm::vec3(0.0f, 3.0f, 8.0f);
+        //camera.target = objects[0].position;
+        camera.target = glm::vec3(0.0f, 0.0f, 0.0f);
         camera.calculateMatrices();
 
         // Loop through cubes and draw each one
