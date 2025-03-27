@@ -14,7 +14,9 @@ uniform float ka;
 uniform float kd;
 uniform float ks;
 uniform float Ns;
-
+uniform float constant;
+uniform float linear;
+uniform float quadratic;
 uniform vec3 lightColour;
 uniform vec3 lightPosition;
 
@@ -39,6 +41,10 @@ void main()
     float cosAlpha  = max(dot(camera, reflection), 0);
     vec3 specular   = ks * lightColour * pow(cosAlpha, Ns);
 
-    // Fragment colour
-    fragmentColour = ambient + diffuse + specular;
+   // Attenuation
+   float distance    = length(lightPosition - fragmentPosition);
+   float attenuation = 1.0 / (constant + linear * distance + quadratic * distance * distance);
+   
+   // Fragment colour
+   fragmentColour = (ambient + diffuse + specular) * attenuation;
 }
