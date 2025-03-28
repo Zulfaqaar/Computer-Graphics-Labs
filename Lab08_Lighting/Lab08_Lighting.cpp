@@ -31,6 +31,21 @@ struct Object
     std::string name;
 };
 
+// Light struct
+struct Light
+{
+    glm::vec3 position;
+    glm::vec3 colour;
+    float constant;
+    float linear;
+    float quadratic;
+    unsigned int type;
+    glm::vec3 direction;
+    float cosPhi;
+};
+
+// Create vector of light sources
+std::vector<Light> lightSources;
 
 int main( void )
 {
@@ -92,7 +107,8 @@ int main( void )
     
     // Compile shader program
     unsigned int shaderID, lightShaderID;
-    shaderID      = LoadShaders("vertexShader.glsl", "fragmentShader.glsl");
+    //shaderID      = LoadShaders("vertexShader.glsl", "fragmentShader.glsl");
+    shaderID = LoadShaders("vertexShader.glsl", "multipleLightsFragmentShader.glsl");
     lightShaderID = LoadShaders("lightVertexShader.glsl", "lightFragmentShader.glsl");
     
     // Activate shader
@@ -120,6 +136,33 @@ int main( void )
     // Define light source properties
     glm::vec3 lightPosition = glm::vec3(2.0f, 2.0f, 2.0f);
     glm::vec3 lightColour = glm::vec3(1.0f, 1.0f, 1.0f);
+
+    // Add first point light source
+    Light light;
+    light.position = glm::vec3(2.0f, 2.0f, 2.0f);
+    light.colour = glm::vec3(1.0f, 1.0f, 1.0f);
+    light.constant = 1.0f;
+    light.linear = 0.1f;
+    light.quadratic = 0.02f;
+    light.type = 1;
+    lightSources.push_back(light);
+
+    // Add second point light source
+    light.position = glm::vec3(1.0f, 1.0f, -8.0f);
+    lightSources.push_back(light);
+
+    // Add spotlight
+    light.position = glm::vec3(0.0f, 3.0f, 0.0f);
+    light.direction = glm::vec3(0.0f, -1.0f, 0.0f);
+    light.cosPhi = std::cos(Maths::radians(45.0f));
+    light.type = 2;
+    lightSources.push_back(light);
+
+    // Add directional light
+    light.direction = glm::vec3(1.0f, -1.0f, 0.0f);
+    light.colour = glm::vec3(1.0f, 1.0f, 0.0f);
+    light.type = 3;
+    lightSources.push_back(light);
 
     // Teapot positions
     glm::vec3 positions[] = {
@@ -167,17 +210,39 @@ int main( void )
         // Activate shader
         glUseProgram(shaderID);
 
-        // Send light source properties to the shader
+        //// Send light source properties to the shader
+        //glUniform1f(glGetUniformLocation(shaderID, "ka"), teapot.ka);
+        //glUniform1f(glGetUniformLocation(shaderID, "kd"), teapot.kd);
+        //glUniform3fv(glGetUniformLocation(shaderID, "lightColour"), 1, &lightColour[0]);
+        //glm::vec3 viewSpaceLightPosition = glm::vec3(camera.view * glm::vec4(lightPosition, 1.0f));
+        //glUniform3fv(glGetUniformLocation(shaderID, "lightPosition"), 1, &viewSpaceLightPosition[0]);
+        //glUniform1f(glGetUniformLocation(shaderID, "ks"), teapot.ks);
+        //glUniform1f(glGetUniformLocation(shaderID, "Ns"), teapot.Ns);
+        //glUniform1f(glGetUniformLocation(shaderID, "constant"), constant);
+        //glUniform1f(glGetUniformLocation(shaderID, "linear"), linear);
+        //glUniform1f(glGetUniformLocation(shaderID, "quadratic"), quadratic);
+
+        // Send multiple light source properties to the shader
+        for (unsigned int i = 0; i < static_cast<unsigned int>(lightSources.size()); i++)
+        {
+            glm::vec3 viewSpaceLightPosition = glm::vec3(camera.view * glm::vec4(lightSources[i].position, 1.0f));
+            std::string idx = std::to_string(i);
+            glUniform3fv(glGetUniformLocation(shaderID, ("lightSources[" + idx + "].colour").c_str()), 1, &lightSources[i].colour[0]);
+            glUniform3fv(glGetUniformLocation(shaderID, ("lightSources[" + idx + "].position").c_str()), 1, &viewSpaceLightPosition[0]);
+            glUniform1f(glGetUniformLocation(shaderID, ("lightSources[" + idx + "].constant").c_str()), lightSources[i].constant);
+            glUniform1f(glGetUniformLocation(shaderID, ("lightSources[" + idx + "].linear").c_str()), lightSources[i].linear);
+            glUniform1f(glGetUniformLocation(shaderID, ("lightSources[" + idx + "].quadratic").c_str()), lightSources[i].quadratic);
+            glUniform1i(glGetUniformLocation(shaderID, ("lightSources[" + idx + "].type").c_str()), lightSources[i].type);
+            glm::vec3 viewSpaceLightDirection = glm::vec3(camera.view * glm::vec4(lightSources[i].direction, 0.0f));
+            glUniform3fv(glGetUniformLocation(shaderID, ("lightSources[" + idx + "].direction").c_str()), 1, &viewSpaceLightDirection[0]);
+            glUniform1f(glGetUniformLocation(shaderID, ("lightSources[" + idx + "].cosPhi").c_str()), lightSources[i].cosPhi);
+        }
+
+        // Send object lighting properties to the fragment shader
         glUniform1f(glGetUniformLocation(shaderID, "ka"), teapot.ka);
         glUniform1f(glGetUniformLocation(shaderID, "kd"), teapot.kd);
-        glUniform3fv(glGetUniformLocation(shaderID, "lightColour"), 1, &lightColour[0]);
-        glm::vec3 viewSpaceLightPosition = glm::vec3(camera.view * glm::vec4(lightPosition, 1.0f));
-        glUniform3fv(glGetUniformLocation(shaderID, "lightPosition"), 1, &viewSpaceLightPosition[0]);
         glUniform1f(glGetUniformLocation(shaderID, "ks"), teapot.ks);
         glUniform1f(glGetUniformLocation(shaderID, "Ns"), teapot.Ns);
-        glUniform1f(glGetUniformLocation(shaderID, "constant"), constant);
-        glUniform1f(glGetUniformLocation(shaderID, "linear"), linear);
-        glUniform1f(glGetUniformLocation(shaderID, "quadratic"), quadratic);
 
         // Calculate view and projection matrices
         camera.target = camera.eye + camera.front;
@@ -222,24 +287,41 @@ int main( void )
         //teapot.draw(shaderID);
         
         // ---------------------------------------------------------------------
-        // Draw light sources
-        // Activate light source shader
+        //// Draw light sources
+        //// Activate light source shader
         glUseProgram(lightShaderID);
 
-        //// Calculate model matrix
-        //glm::mat4 translate = Maths::translate(lightPosition);
-        //glm::mat4 scale = Maths::scale(glm::vec3(0.1f));
-        //glm::mat4 model = translate * scale;
+        ////// Calculate model matrix
+        ////glm::mat4 translate = Maths::translate(lightPosition);
+        ////glm::mat4 scale = Maths::scale(glm::vec3(0.1f));
+        ////glm::mat4 model = translate * scale;
 
-        // Send the MVP and MV matrices to the vertex shader
-        glm::mat4 MVP = camera.projection * camera.view * model;
-        glUniformMatrix4fv(glGetUniformLocation(lightShaderID, "MVP"), 1, GL_FALSE, &MVP[0][0]);
+        //// Send the MVP and MV matrices to the vertex shader
+        //glm::mat4 MVP = camera.projection * camera.view * model;
+        //glUniformMatrix4fv(glGetUniformLocation(lightShaderID, "MVP"), 1, GL_FALSE, &MVP[0][0]);
 
-        // Send model, view, projection matrices and light colour to light shader
-        glUniform3fv(glGetUniformLocation(lightShaderID, "lightColour"), 1, &lightColour[0]);
+        //// Send model, view, projection matrices and light colour to light shader
+        //glUniform3fv(glGetUniformLocation(lightShaderID, "lightColour"), 1, &lightColour[0]);
 
-        // Draw light source
-        sphere.draw(lightShaderID);
+        //// Draw light source
+        //sphere.draw(lightShaderID);
+        for (unsigned int i = 0; i < static_cast<unsigned int>(lightSources.size()); i++)
+        {
+            // Calculate model matrix
+            glm::mat4 translate = Maths::translate(lightSources[i].position);
+            glm::mat4 scale = Maths::scale(glm::vec3(0.1f));
+            glm::mat4 model = translate * scale;
+
+            // Send the MVP and MV matrices to the vertex shader
+            glm::mat4 MVP = camera.projection * camera.view * model;
+            glUniformMatrix4fv(glGetUniformLocation(lightShaderID, "MVP"), 1, GL_FALSE, &MVP[0][0]);
+
+            // Send model, view, projection matrices and light colour to light shader
+            glUniform3fv(glGetUniformLocation(lightShaderID, "lightColour"), 1, &lightSources[i].colour[0]);
+
+            // Draw light source
+            sphere.draw(lightShaderID);
+        }
         // ---------------------------------------------------------------------
 
         // Swap buffers
