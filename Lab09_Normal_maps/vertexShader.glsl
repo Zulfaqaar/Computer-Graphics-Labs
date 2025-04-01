@@ -45,8 +45,9 @@ void main()
     // Calculate the TBN matrix that transforms view space to tangent space
     mat3 invMV = transpose(inverse(mat3(MV)));
     vec3 t     = normalize(invMV * tangent);
-    vec3 b     = normalize(invMV * bitangent);
     vec3 n     = normalize(invMV * normal);
+    t          = normalize(t - dot(t, n) * n);
+    vec3 b     = cross(n, t);
     mat3 TBN   = transpose(mat3(t, b, n));
 
     // Output tangent space fragment position, light positions and directions

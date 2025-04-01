@@ -28,6 +28,7 @@ struct Light
 // Uniforms
 uniform sampler2D diffuseMap;
 uniform sampler2D normalMap;
+uniform sampler2D specularMap;
 uniform float ka;
 uniform float kd;
 uniform float ks;
@@ -95,8 +96,9 @@ vec3 pointLight(vec3 lightPosition, vec3 lightColour,
     vec3 reflection = - light + 2 * dot(light, normal) * normal;
     vec3 camera     = normalize(-fragmentPosition);
     float cosAlpha  = max(dot(camera, reflection), 0);
-    vec3 specular   = ks * lightColour * pow(cosAlpha, Ns);
-    
+    //vec3 specular   = ks * lightColour * pow(cosAlpha, Ns);
+    vec3 specular   = ks * lightColour * pow(cosAlpha, Ns) * vec3(texture(specularMap, UV));
+
     // Attenuation
     float distance    = length(lightPosition - fragmentPosition);
     float attenuation = 1.0 / (constant + linear * distance +
@@ -126,7 +128,7 @@ vec3 spotLight(vec3 lightPosition, vec3 lightDirection, vec3 lightColour,
     vec3 reflection = - light + 2 * dot(light, normal) * normal;
     vec3 camera     = normalize(-fragmentPosition);
     float cosAlpha  = max(dot(camera, reflection), 0);
-    vec3 specular   = ks * lightColour * pow(cosAlpha, Ns);
+    vec3 specular   = ks * lightColour * pow(cosAlpha, Ns) * vec3(texture(specularMap, UV));
     
     // Attenuation
     float distance    = length(lightPosition - fragmentPosition);
@@ -165,7 +167,7 @@ vec3 directionalLight(vec3 lightDirection, vec3 lightColour)
     vec3 reflection = - light + 2 * dot(light, normal) * normal;
     vec3 camera     = normalize(-fragmentPosition);
     float cosAlpha  = max(dot(camera, reflection), 0);
-    vec3 specular   = ks * lightColour * pow(cosAlpha, Ns);
+    vec3 specular   = ks * lightColour * pow(cosAlpha, Ns) * vec3(texture(specularMap, UV));
     
     // Return fragment colour
     return ambient + diffuse + specular;
