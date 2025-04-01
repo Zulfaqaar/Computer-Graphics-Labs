@@ -177,8 +177,26 @@ int main( void )
     object.angle = 0.0f;
     object.name = "floor";
     objects.push_back(object);
+    
+    // Load a 2D plane model for the floor and add textures
+    Model bricks("../assets/plane.obj");
+    bricks.addTexture("../assets/bricks_diffuse.png", "diffuse");
+    bricks.addTexture("../assets/bricks_normal.png", "normal");
+    bricks.addTexture("../assets/bricks_specular.png", "specular");
 
+    // Define floor light properties
+    bricks.ka = 0.2f;
+    bricks.kd = 1.0f;
+    bricks.ks = 1.0f;
+    bricks.Ns = 20.0f;
 
+    // Add floor model to objects vector
+    object.position = glm::vec3(0.0f, 4.0f, -5.0f);
+    object.scale = glm::vec3(5.0f, 5.0f, 5.0f);
+    object.rotation = glm::vec3(-1.0f, 0.0f, 0.0f);
+    object.angle = 67.5f;
+    object.name = "bricks";
+    objects.push_back(object);
 
     // Render loop
     while (!glfwWindowShouldClose(window))
@@ -226,6 +244,8 @@ int main( void )
                 teapot.draw(shaderID);
             if (objects[i].name == "floor")
                 floor.draw(shaderID);
+            if (objects[i].name == "bricks")
+                bricks.draw(shaderID);
         }
         
         // Draw light sources
