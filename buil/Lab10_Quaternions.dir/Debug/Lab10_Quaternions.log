@@ -1,0 +1,8 @@
+﻿  Building Custom Rule D:/Git/Computer-Graphics-Labs/CMakeLists.txt
+  Lab10_Quaternions.cpp
+  maths.cpp
+  camera.cpp
+  model.cpp
+  light.cpp
+D:\Git\Computer-Graphics-Labs\Lab10_Quaternions\Lab10_Quaternions.cpp(150,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Lab10_Quaternions.vcxproj -> D:\Git\Computer-Graphics-Labs\buil\Debug\Lab10_Quaternions.exe
