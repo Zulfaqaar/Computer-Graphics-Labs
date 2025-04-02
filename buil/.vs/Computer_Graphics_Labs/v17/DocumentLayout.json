@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Git\\Computer-Graphics-Labs\\buil\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EBD93B33-1F40-3CAA-B80B-0633C5ECF969}|Lab10_Quaternions.vcxproj|D:\\Git\\Computer-Graphics-Labs\\Lab10_Quaternions\\Lab10_Quaternions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B301E35D-7A97-309B-B451-39208D820DF6}|Lab09_Normal_maps.vcxproj|D:\\Git\\Computer-Graphics-Labs\\Lab09_Normal_maps\\Lab09_Normal_maps.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B301E35D-7A97-309B-B451-39208D820DF6}|Lab09_Normal_maps.vcxproj|D:\\Git\\Computer-Graphics-Labs\\common\\maths.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B301E35D-7A97-309B-B451-39208D820DF6}|Lab09_Normal_maps.vcxproj|D:\\Git\\Computer-Graphics-Labs\\common\\maths.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Lab10_Quaternions.cpp",
+              "DocumentMoniker": "D:\\Git\\Computer-Graphics-Labs\\Lab10_Quaternions\\Lab10_Quaternions.cpp",
+              "RelativeDocumentMoniker": "..\\Lab10_Quaternions\\Lab10_Quaternions.cpp",
+              "ToolTip": "D:\\Git\\Computer-Graphics-Labs\\Lab10_Quaternions\\Lab10_Quaternions.cpp",
+              "RelativeToolTip": "..\\Lab10_Quaternions\\Lab10_Quaternions.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-02T12:26:01.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "maths.cpp",
+              "DocumentMoniker": "D:\\Git\\Computer-Graphics-Labs\\common\\maths.cpp",
+              "RelativeDocumentMoniker": "..\\common\\maths.cpp",
+              "ToolTip": "D:\\Git\\Computer-Graphics-Labs\\common\\maths.cpp",
+              "RelativeToolTip": "..\\common\\maths.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-02T12:23:18.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "maths.hpp",
+              "DocumentMoniker": "D:\\Git\\Computer-Graphics-Labs\\common\\maths.hpp",
+              "RelativeDocumentMoniker": "..\\common\\maths.hpp",
+              "ToolTip": "D:\\Git\\Computer-Graphics-Labs\\common\\maths.hpp",
+              "RelativeToolTip": "..\\common\\maths.hpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-04-02T12:23:11.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Lab09_Normal_maps.cpp",
+              "DocumentMoniker": "D:\\Git\\Computer-Graphics-Labs\\Lab09_Normal_maps\\Lab09_Normal_maps.cpp",
+              "RelativeDocumentMoniker": "..\\Lab09_Normal_maps\\Lab09_Normal_maps.cpp",
+              "ToolTip": "D:\\Git\\Computer-Graphics-Labs\\Lab09_Normal_maps\\Lab09_Normal_maps.cpp",
+              "RelativeToolTip": "..\\Lab09_Normal_maps\\Lab09_Normal_maps.cpp",
+              "ViewState": "AQIAAJYAAAAAAAAAAAAAAMcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-02T12:22:17.5Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

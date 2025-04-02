@@ -1,0 +1,10 @@
+^D:\GIT\COMPUTER-GRAPHICS-LABS\BUIL\CMAKEFILES\8F9A01EBC97738ED3B91441E457AC32A\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Git/Computer-Graphics-Labs -BD:/Git/Computer-Graphics-Labs/buil --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Git/Computer-Graphics-Labs/buil/Computer_Graphics_Labs.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
