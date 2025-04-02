@@ -22,12 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -38,8 +34,7 @@
               "RelativeToolTip": "..\\Lab10_Quaternions\\Lab10_Quaternions.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-02T12:26:01.871Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-02T12:26:01.871Z"
             },
             {
               "$type": "Document",
@@ -73,7 +68,7 @@
               "RelativeDocumentMoniker": "..\\Lab09_Normal_maps\\Lab09_Normal_maps.cpp",
               "ToolTip": "D:\\Git\\Computer-Graphics-Labs\\Lab09_Normal_maps\\Lab09_Normal_maps.cpp",
               "RelativeToolTip": "..\\Lab09_Normal_maps\\Lab09_Normal_maps.cpp",
-              "ViewState": "AQIAAPkAAAAAAAAAAAAAAAQBAAAeAAAA",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAAAKwAAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-02T12:22:17.5Z",
               "EditorCaption": ""
