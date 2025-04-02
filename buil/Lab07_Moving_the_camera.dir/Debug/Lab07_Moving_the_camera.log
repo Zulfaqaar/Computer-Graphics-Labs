@@ -1,7 +1,1 @@
-﻿  Building Custom Rule D:/Git/Computer-Graphics-Labs/CMakeLists.txt
-  Lab07_Moving_the_camera.cpp
-  maths.cpp
-  camera.cpp
-D:\Git\Computer-Graphics-Labs\Lab07_Moving_the_camera\Lab07_Moving_the_camera.cpp(262,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Git\Computer-Graphics-Labs\Lab07_Moving_the_camera\Lab07_Moving_the_camera.cpp(288,27): warning C4018: '<': signed/unsigned mismatch
-  Lab07_Moving_the_camera.vcxproj -> D:\Git\Computer-Graphics-Labs\buil\Debug\Lab07_Moving_the_camera.exe
+﻿

@@ -1,8 +1,1 @@
-﻿  Building Custom Rule D:/Git/Computer-Graphics-Labs/CMakeLists.txt
-  Lab08_Lighting.cpp
-  maths.cpp
-  camera.cpp
-  model.cpp
-D:\Git\Computer-Graphics-Labs\Lab08_Lighting\Lab08_Lighting.cpp(198,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Git\Computer-Graphics-Labs\Lab08_Lighting\Lab08_Lighting.cpp(268,27): warning C4018: '<': signed/unsigned mismatch
-  Lab08_Lighting.vcxproj -> D:\Git\Computer-Graphics-Labs\buil\Debug\Lab08_Lighting.exe
+﻿

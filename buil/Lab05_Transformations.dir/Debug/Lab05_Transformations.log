@@ -1,5 +1,1 @@
-﻿  Building Custom Rule D:/Git/Computer-Graphics-Labs/CMakeLists.txt
-  Lab05_Transformations.cpp
-  maths.cpp
-D:\Git\Computer-Graphics-Labs\Lab05_Transformations\Lab05_Transformations.cpp(171,61): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Lab05_Transformations.vcxproj -> D:\Git\Computer-Graphics-Labs\buil\Debug\Lab05_Transformations.exe
+﻿

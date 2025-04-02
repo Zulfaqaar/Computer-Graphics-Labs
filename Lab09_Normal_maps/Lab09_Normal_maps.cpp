@@ -176,12 +176,15 @@ int main( void )
     wall.kd = 1.0f;
     wall.ks = 1.0f;
     wall.Ns = 20.0f;
-    for (unsigned int i = 0; i < 2; i++) {
+    // Counter
+    float ii = 0.0f;
+    for (unsigned int i = 0; i < wallPositions->length(); i++) {
         object.position = wallPositions[i];
         object.scale = glm::vec3(5.0f, 5.0f, 5.0f);
-        object.rotation = glm::vec3(1.0f, 0.0f, 0.0f);
+        object.rotation = glm::vec3(1.0f, 0.0, 0.0);
         object.angle = Maths::radians(90.0f);
         objects.push_back(object);
+        ii += 1;
     }
     /*
     object.angle = Maths::radians(90.0f);
@@ -209,9 +212,9 @@ int main( void )
     
     // Load a 2D plane model for the floor and add textures
     Model bricks("../assets/plane.obj");
-    bricks.addTexture("../assets/bricks_diffuse.png", "diffuse");
-    bricks.addTexture("../assets/bricks_normal.png", "normal");
-    bricks.addTexture("../assets/bricks_specular.png", "specular");
+    bricks.addTexture("../assets/bricks_diffuse - Copy.png", "diffuse");
+    bricks.addTexture("../assets/bricks_normal - Copy.png", "normal");
+    bricks.addTexture("../assets/bricks_specular - Copy.png", "specular");
 
     // Define brick light properties
     bricks.ka = 0.2f;
@@ -222,7 +225,7 @@ int main( void )
     // Add brick model to objects vector
     object.position = glm::vec3(0.0f, 4.0f, 10.0f);
     object.scale = glm::vec3(5.0f, 5.0f, 5.0f);
-    object.rotation = glm::vec3(-1.0f, 0.0f, 0.0f);
+    object.rotation = glm::vec3(0.0f, 0.0f, 1.0f);
     object.angle = Maths::radians(90.0f);
     object.name = "bricks";
     objects.push_back(object);
