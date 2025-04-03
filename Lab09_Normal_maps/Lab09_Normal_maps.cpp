@@ -114,17 +114,17 @@ int main( void )
     
     // Add light sources
     Light lightSources;
-    lightSources.addPointLight(glm::vec3(2.0f, 2.0f, 2.0f),         // position
+    lightSources.addPointLight(glm::vec3(8.75f, 5.0f, 0.0f),          // position
                                glm::vec3(1.0f, 1.0f, 1.0f),         // colour
                                1.0f, 0.1f, 0.02f);                  // attenuation
     
-    lightSources.addPointLight(glm::vec3(1.0f, 1.0f, -8.0f),        // position
+    lightSources.addPointLight(glm::vec3(-8.75f, 5.0f, 0.0f),        // position
                                glm::vec3(1.0f, 1.0f, 1.0f),         // colour
                                1.0f, 0.1f, 0.02f);                  // attenuation
     
-    lightSources.addSpotLight(glm::vec3(0.0f, 3.0f, 0.0f),          // position
+    lightSources.addSpotLight(glm::vec3(0.0f, 2.0f, -5.0f),          // position
                               glm::vec3(0.0f, -1.0f, 0.0f),         // direction
-                              glm::vec3(1.0f, 1.0f, 1.0f),          // colour
+                              glm::vec3(0.0f, 0.0f, 1.0f),          // colour
                               1.0f, 0.1f, 0.02f,                    // attenuation
                               std::cos(Maths::radians(45.0f)));     // cos(phi)
     
@@ -133,67 +133,103 @@ int main( void )
     
     // Teapot positions
     glm::vec3 teapotPositions[] = {
-        glm::vec3( 0.0f,  0.0f,  0.0f),
-        glm::vec3( 2.0f,  5.0f, -10.0f),
-        glm::vec3(-3.0f, -2.0f, -3.0f),
-        glm::vec3(-4.0f, -2.0f, -8.0f),
-        glm::vec3( 2.0f,  2.0f, -6.0f),
-        glm::vec3(-4.0f,  3.0f, -8.0f),
-        glm::vec3( 0.0f, -2.0f, -5.0f),
-        glm::vec3( 4.0f,  2.0f, -4.0f),
-        glm::vec3( 2.0f,  0.0f, -2.0f),
-        glm::vec3(-1.0f,  1.0f, -2.0f)
+        glm::vec3(-8.75f,  -0.25f,  -8.75f),
+        glm::vec3(-8.75f,  -0.25f,  -7.0f),
+        glm::vec3(-8.75f,  -0.25f,  -5.25f),
+        glm::vec3(-8.75f,  -0.25f,  -3.5f),
+        glm::vec3(-8.75f,  -0.25f,  -1.75f),
+        glm::vec3(-8.75f,  -0.25f,  0.0f),
+        glm::vec3(-8.75f,  -0.25f,  1.75f),
+        glm::vec3(-8.75f,  -0.25f,  3.5f),
+        glm::vec3(-8.75f,  -0.25f,  5.25f),
+        glm::vec3(-8.75f,  -0.25f,  7.0f),
+        glm::vec3(-8.75f,  -0.25f,  8.75f),
     };
 
     // Add teapots to objects vector
     std::vector<Object> objects;
     Object object;
     object.name = "teapot";
-    for (unsigned int i = 0 ; i < 10 ; i++)
+    for (unsigned int i = 0 ; i < 11 ; i++)
     {
         object.position = teapotPositions[i];
         object.rotation = glm::vec3(1.0f, 1.0f, 1.0f);
         object.scale    = glm::vec3(0.75f, 0.75f, 0.75f);
-        object.angle    = Maths::radians(20.0f * i);
+        object.angle    = Maths::radians(0.0f);
         objects.push_back(object);
     }
-  
+
+  //WALLS
+
     //Wall positions
     glm::vec3 wallPositions[] = {
-        //back wall
-
         // front wall
         glm::vec3(0.0f, 4.0f, -10.0f),
+        //back wall
+        glm::vec3(0.0f, 4.0f, 10.0f),
         //right wall
-        glm::vec3(10.0f, 4.0f, 0.0f)
+        glm::vec3(10.0f, 4.0f, 0.0f),
         //left wall
+        glm::vec3(-10.0f, 4.0f, 0.0f)
     };
-    // Add brick walls to vector
-    std::vector<Model> brickWalls;
-    // Load a 2D plane model for the brick wall and add textures
-    Model walls("../assets/plane.obj");
-    object.name = "bricks";
-    walls.addTexture("../assets/bricks_diffuse.png", "diffuse");
-    walls.addTexture("../assets/bricks_normal.png", "normal");
-    walls.addTexture("../assets/bricks_specular.png", "specular");
+    // Load a 2D plane model for the brick walls and add textures
+    Model fbWalls("../assets/plane.obj");
+    object.name = "fbBricks";
+    fbWalls.addTexture("../assets/bricks_diffuse - Copy.png", "diffuse");
+    fbWalls.addTexture("../assets/bricks_normal - Copy.png", "normal");
+    fbWalls.addTexture("../assets/bricks_specular - Copy.png", "specular");
     // Define brick light properties
-    walls.ka = 0.2f;
-    walls.kd = 1.0f;
-    walls.ks = 1.0f;
-    walls.Ns = 20.0f;
-    // Counter
-    float ii = 0.0f;
-    for (unsigned int i = 0; i < wallPositions->length(); i++) {
-        object.position = wallPositions[i];
-        object.scale = glm::vec3(5.0f, 5.0f, 5.0f);
-        object.rotation = glm::vec3(0.0f, 0.0f, 1.0f);
-        object.angle = Maths::radians(90.0f);
-        objects.push_back(object);
-        ii += 1;
-    }
-    /*
+    fbWalls.ka = 0.2f;
+    fbWalls.kd = 1.0f;
+    fbWalls.ks = 1.0f;
+    fbWalls.Ns = 20.0f;
+    
+    //FRONT WALL
+
+    // Add brick model to objects vector
+    object.position = wallPositions[0];
+    object.scale = glm::vec3(5.0f, 5.0f, 5.0f);
+    object.rotation = glm::vec3(1.0f, 0.0f, 0.0f);
     object.angle = Maths::radians(90.0f);
-    */
+    objects.push_back(object);
+
+    //BACK WALL
+    object.position = wallPositions[1];
+    object.scale = glm::vec3(5.0f, 5.0f, 5.0f);
+    object.rotation = glm::vec3(-1.0f, 0.0f, 0.0f);
+    object.angle = Maths::radians(90.0f);
+    objects.push_back(object);
+
+    // Load a 2D plane model for the brick walls and add textures
+    Model lrWalls("../assets/plane.obj");
+    object.name = "lrBricks";
+    lrWalls.addTexture("../assets/bricks_diffuse - Copy.png", "diffuse");
+    lrWalls.addTexture("../assets/bricks_normal - Copy.png", "normal");
+    lrWalls.addTexture("../assets/bricks_specular - Copy.png", "specular");
+
+    // Define brick light properties
+    lrWalls.ka = 0.2f;
+    lrWalls.kd = 1.0f;
+    lrWalls.ks = 1.0f;
+    lrWalls.Ns = 20.0f;
+
+    //RIGHT WALL
+
+    // Add brick model to objects vector
+    object.position = wallPositions[2];
+    object.scale = glm::vec3(5.0f, 5.0f, 5.0f);
+    object.rotation = glm::vec3(0.0f, 0.0f, 1.0f);
+    object.angle = Maths::radians(90.0f);
+    objects.push_back(object);
+
+    //LEFT WALL
+
+// Add brick model to objects vector
+    object.position = wallPositions[3];
+    object.scale = glm::vec3(5.0f, 5.0f, 5.0f);
+    object.rotation = glm::vec3(0.0f, 0.0f, -1.0f);
+    object.angle = Maths::radians(90.0f);
+    objects.push_back(object);
 
     // Load a 2D plane model for the floor and add textures
     Model floor("../assets/plane.obj");
@@ -213,30 +249,6 @@ int main( void )
     object.rotation = glm::vec3(0.0f, 1.0f, 0.0f);
     object.angle = 0.0f;
     object.name = "floor";
-    objects.push_back(object);
-    
-    // Load a 2D plane model for the floor and add textures
-    Model bricks("../assets/plane.obj");
-    bricks.addTexture("../assets/bricks_diffuse.png", "diffuse");
-    bricks.addTexture("../assets/bricks_normal.png", "normal");
-    bricks.addTexture("../assets/bricks_specular.png", "specular");
-
-    //FRONT WALL
-
-    //BACK WALL
-
-    // Define brick light properties
-    bricks.ka = 0.2f;
-    bricks.kd = 1.0f;
-    bricks.ks = 1.0f;
-    bricks.Ns = 20.0f;
-
-    // Add brick model to objects vector
-    object.position = glm::vec3(0.0f, 4.0f, 10.0f);
-    object.scale = glm::vec3(5.0f, 5.0f, 5.0f);
-    object.rotation = glm::vec3(-1.0f, 0.0f, 0.0f);
-    object.angle = Maths::radians(90.0f);
-    object.name = "bricks";
     objects.push_back(object);
 
     // Render loop
@@ -285,8 +297,10 @@ int main( void )
                 teapot.draw(shaderID);
             if (objects[i].name == "floor")
                 floor.draw(shaderID);
-            if (objects[i].name == "bricks")
-                bricks.draw(shaderID);
+            if (objects[i].name == "fbBricks")
+                lrWalls.draw(shaderID);
+            if (objects[i].name == "lrBricks")
+                lrWalls.draw(shaderID);
         }
         
         // Draw light sources
