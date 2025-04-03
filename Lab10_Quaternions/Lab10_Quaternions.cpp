@@ -130,7 +130,7 @@ int main( void )
         glm::vec3(-1.0f,  1.0f, -2.0f)
     };
     
-    // Add teapots to objects vector
+    // Add cubes to objects vector
     std::vector<Object> objects;
     Object object;
     object.name = "cube";
